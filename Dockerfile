@@ -1,12 +1,14 @@
-FROM n8nio/n8n
+# Imagen base con Node.js (recomendada por n8n)
+FROM node:18-alpine
 
-ENV N8N_BASIC_AUTH_ACTIVE=true
-ENV N8N_BASIC_AUTH_USER=admin
-ENV N8N_BASIC_AUTH_PASSWORD=1234
-ENV N8N_PROTOCOL=http
-ENV N8N_PORT=5678
-ENV N8N_HOST=0.0.0.0
+# Instalar n8n globalmente
+RUN npm install -g n8n
 
+# Crear directorio de trabajo
+WORKDIR /data
+
+# Exponer el puerto por defecto de n8n
 EXPOSE 5678
 
+# Comando de inicio
 CMD ["n8n", "start"]
